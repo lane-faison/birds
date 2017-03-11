@@ -1,0 +1,27 @@
+{
+  "name": "birds",
+  "version": "1.0.0",
+  "description": "Bird-tracking system",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lanefaison2/birds.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lanefaison2/birds/issues"
+  },
+  "homepage": "https://github.com/lanefaison2/birds#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "nodemon": "^1.11.0",
+    "knex": "^0.12.7",
+    "pg": "^6.1.4"
+  }
+}

@@ -68,8 +68,13 @@ nav {
   top: -50px;
   margin: auto;
   overflow: hidden;
-
 }
+
+.carousel-caption {
+  font-size: 25px;
+  top: 280px;
+}
+
 
 /****************** BIRD LIST ***********************/
 .new-bird-div {
@@ -105,4 +110,13 @@ nav {
 
 .main-list h1 {
   text-decoration: underline;
+}
+
+.bird-notes {
+  display: none;
+  font-size: 20px;
+}
+
+.notes-frame {
+  border: 2px solid #222;
 }

@@ -4,12 +4,12 @@ exports.seed = (knex, Promise) => {
     .then( () => {
       // Inserts seed entries
       return knex('location').insert([
-        {name: 'Jungle1'},
-        {name: 'Jungle2'},
-        {name: 'Jungle3'},
-        {name: 'Jungle4'},
-        {name: 'Jungle5'},
-        {name: 'Jungle6'}
+        {area: 'Jungle1'},
+        {area: 'Jungle2'},
+        {area: 'Jungle3'},
+        {area: 'Jungle4'},
+        {area: 'Jungle5'},
+        {area: 'Jungle6'}
       ])
     })
 }

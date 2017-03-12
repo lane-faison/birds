@@ -5,7 +5,7 @@ exports.up = function(knex, Promise) {
     table.integer('location_id').references('location.id').notNullable().onDelete('cascade')
     table.integer('rating')
     table.dateTime('date').defaultTo(knex.fn.now())
-    table.text('notes')
+    table.text('notes').nullable()
   })
 }
 

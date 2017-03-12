@@ -8,7 +8,9 @@ function Location() { return knex('location') }
 // ********************************************* READ
 //GET ALL BIRDS
 router.get('/bird', (req, res) => {
-  Bird().select().orderBy('name', 'asc')
+  knex('bird')
+  .join('location','bird.location_id','location.id')
+  .select('bird.*','location.area').orderBy('bird.name', 'asc')
   .then( result => {
     res.json(result)
   })
@@ -52,7 +54,7 @@ router.get('/location/:id', (req, res) => {
 
 // ********************************************* CREATE
 // CREATE BIRD
-router.post('/bird', (req, res) => {
+router.post('/bird/', (req, res) => {
 
   var locationID
 
@@ -60,9 +62,9 @@ router.post('/bird', (req, res) => {
   .then( result => {
     // LOCATION HAS BEEN FOUND
     // CREATE BIRD
-
+    console.log('Location found, creating bird...')
     locationID = result[0].id
-    Bird().insert({
+    return Bird().insert({
       location_id: locationID,
       name: req.body.name,
       rating: req.body.rating,
@@ -71,15 +73,12 @@ router.post('/bird', (req, res) => {
     .then( result => {
       res.json(result)
     })
-    .catch( result => {
-      res.status(404)
-    })
   })
   .catch( result => {
     // LOCATION HAS NOT BEEN FOUND
     // CREATE LOCATION
     // CREATE BIRD
-
+    console.log('Location NOT found, creating bird...')
     knex('location').insert({name: req.body.location},'id')
     .then( result => {
       return Bird().insert({
@@ -91,9 +90,6 @@ router.post('/bird', (req, res) => {
     })
     .then( result => {
       res.json(result)
-    })
-    .catch( result => {
-      res.status(404)
     })
   })
 })

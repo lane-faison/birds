@@ -2,7 +2,7 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable('bird', function(table){
     table.increments()
     table.string('name')
-    table.integer('location_id').references('location.id')
+    table.integer('location_id').references('location.id').notNullable().onDelete('cascade')
     table.integer('rating')
     table.dateTime('date').defaultTo(knex.fn.now())
     table.text('notes')

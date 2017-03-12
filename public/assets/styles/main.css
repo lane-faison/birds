@@ -1,0 +1,82 @@
+body {
+  background: #014d00;
+}
+
+
+/**************************************** BIRD LIBRARY */
+.navbar-brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  font-size: 30px;
+  font-family: 'Chewy', cursive;
+}
+
+.navbar-default {
+  margin-bottom: 0;
+}
+.navbar-nav li, .guide-title, .navbar-nav .dropdown .dropdown-menu li {
+  color: #014d00;
+}
+.dropdown-menu {
+  font-family: 'Didact Gothic', sans-serif;
+}
+
+.toucan-logo {
+  height: 40px;
+}
+
+.guide-title {
+  color: #014d00;
+  font-size: 30px;
+  margin: 0 30px;
+}
+
+.bird-index {
+  display: flex;
+  justify-content: space-around;
+}
+
+.bird-info-div {
+  display: none;
+}
+
+/******* CAROUSEL ********/
+.carousel-inner {
+  height: 400px;
+  background-image: url('http://wfiles.brothersoft.com/a/amazon-forest_94321-1280x800.jpg');
+  background-position: center;
+  background-size: cover;
+  border-bottom: 15px solid #000;
+  border-top: 15px solid #000;
+}
+
+
+.carousel-inner .item img {
+  height: 300px;
+  position: relative;
+  height: 100%;
+  min-width: 800px;
+  top: -50px;
+  margin: auto;
+  overflow: hidden;
+
+}
+
+/****************** BIRD LIST ***********************/
+.main-list {
+  background: #dfffd1;
+  font-family: 'Didact Gothic', sans-serif;
+
+}
+
+.bird-list-item {
+  text-align: left;
+}
+
+.main-list h1 {
+  text-decoration: underline;
+}

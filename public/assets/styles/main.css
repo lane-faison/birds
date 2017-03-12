@@ -44,6 +44,11 @@ nav {
   display: none;
 }
 
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+  background: #dfffd1;
+  color: #014d00;
+}
+
 /******* CAROUSEL ********/
 .carousel-inner {
   height: 400px;
@@ -67,10 +72,31 @@ nav {
 }
 
 /****************** BIRD LIST ***********************/
+.new-bird-div {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.btn-new-bird {
+  width: 250px;
+  height: 75px;
+  font-size: 40px;
+  font-family: 'Didact Gothic', sans-serif;
+}
+
+.btn-new-bird:hover {
+  border: 5px solid #eee;
+}
+
 .main-list {
   background: #dfffd1;
   font-family: 'Didact Gothic', sans-serif;
+  padding: 25px;
+}
 
+.row {
+  margin-bottom: 150px;
 }
 
 .bird-list-item {

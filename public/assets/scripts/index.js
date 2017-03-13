@@ -15,7 +15,7 @@ $(document).ready( () => {
           </tr>`)
       }
       else {
-        var date = data[i].date.slice(0,10)
+        var date = data[i].date.slice(5,10)
         $('.bird-list').append(
           `<tr class='bird-row' id=${data[i].id}>
           <td><h3>${data[i].name}</h3></td>

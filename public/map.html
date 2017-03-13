@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset='utf-8'>
-    <title>Bird found!</title>
+    <title>Map of Ecuador</title>
     <!-- jQuery -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js'></script>
     <!-- TableTop API -->
@@ -16,13 +16,13 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' crossorigin='anonymous'></script>
     <!-- Front-side JavaScript -->
-    <script src='./assets/scripts/add.js'></script>
+    <script src='./assets/scripts/map.js'></script>
     <!-- CSS -->
     <link rel='stylesheet' type='text/css' href='./assets/styles/main.css'>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Chewy|Didact+Gothic" rel="stylesheet">
   </head>
-  <body class='body-add'>
+  <body>
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -39,7 +39,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li><a href="index.html">Checklist </a></li>
-            <li><a href="map.html">Map </a></li>
+            <li class="active"><a href="#">Map <span class="sr-only">(current)</span></a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Library </a></li>
@@ -55,38 +55,10 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    <div class="row">
-      <div class="col-xs-1 col-md-1"></div>
-      <div class="col-xs-10 col-md-10">
-        <div>
-          <form class='form-new-bird'>
-            <div class='required-fields'>
-              <div class="form-group">
-                <label>Bird name:</label>
-                <input type="text" class="form-control" id="new-bird-name">
-              </div>
-              <div class="form-group">
-                <label>Location:</label>
-                <input type="text" class="form-control" id="new-bird-location">
-              </div>
-              <div class="form-group form-group-rating">
-                <label>Rating:</label>
-                <input type="number" class="form-control" id="new-bird-rating">
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Field notes: (optional)</label>
-              <textarea class="form-control form-control-notes" id="new-bird-notes"></textarea>
-            </div>
-            <div class='new-bird-btns-div'>
-              <a href='index.html'><button type="button" class="btn-back-bird btn btn-default"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Back</button></a>
-              <button type="button" class="btn-save-bird btn-success btn btn-primary">Save</button>
-            </div>
-          </form>
-        </div>
+    <main>
+      <div class='map-div'>
+        <img src='./assets/images/ecuador-map.jpg' alt='Map of Ecuador'>
       </div>
-      <div class="col-xs-1 col-md-1"></div>
-    </div>
-
+    </main>
   </body>
 </html>

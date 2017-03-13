@@ -46,17 +46,19 @@ $(document).on('click','.show-field-notes', function () {
 
 $(document).on('click','.delete-btn', function () {
   var birdID = $(this).closest('tr').attr('id')
-  console.log(birdID);
-  $.ajax({
-    url: `/birds/bird/${birdID}`,
-    type: 'DELETE',
-    success: function (result) {
-      $(`#${birdID}`).remove()
-      console.log('BIRD DELETED');
-    },
-    error: function (result) {
-      console.log('Something went wrong when trying to delete this bird.')
-    }
-  })
+  var confirmation = confirm('Are you sure you want to delete this bird from your checklist?')
+  if (confirmation === true) {
+    $.ajax({
+      url: `/birds/bird/${birdID}`,
+      type: 'DELETE',
+      success: function (result) {
+        $(`#${birdID}`).remove()
+        console.log('BIRD DELETED')
+      },
+      error: function (result) {
+        console.log('Something went wrong when trying to delete this bird.')
+      }
+    })
+  }
 
 })

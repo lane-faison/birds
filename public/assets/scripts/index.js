@@ -3,7 +3,7 @@ $(document).ready( () => {
     console.log(data);
     for (var i = 0; i < data.length; i++) {
       if (data[i].notes) {
-        var date = data[i].date.slice(0,10)
+        var date = data[i].date.slice(5,10)
         $('.bird-list').append(
           `<tr class='bird-row' id=${data[i].id}>
           <td class='td-bird-name'><h3>${data[i].name}</h3></td>

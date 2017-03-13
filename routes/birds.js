@@ -23,7 +23,10 @@ router.get('/bird', (req, res) => {
 
 //GET ONE BIRD
 router.get('/bird/:id', (req, res) => {
-  Bird().where('id', req.params.id).first()
+  knex('bird')
+  .join('location','bird.location_id','location.id')
+  .select('bird.*','location.area')
+  .where('bird.id', req.params.id).first()
   .then( result => {
     res.json(result)
   })
@@ -31,6 +34,7 @@ router.get('/bird/:id', (req, res) => {
     res.status(404)
   })
 })
+// Bird().where('id', req.params.id).first()
 
 //GET ALL LOCATIONS
 router.get('/location', (req, res) => {

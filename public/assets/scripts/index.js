@@ -1,11 +1,18 @@
+var count = 0
+
 $(document).ready( () => {
   $.get('/birds/bird', data => {
-    console.log(data);
+    console.log(data)
     for (var i = 0; i < data.length; i++) {
+      count++
       if (data[i].notes) {
         var date = data[i].date.slice(5,10)
         $('.bird-list').append(
-          `<tr class='bird-row' id=${data[i].id}>
+          `<tr class='bird-row order-${count}' id=${data[i].id}>
+          <div class='order-btns'>
+          <button class='btn btn-default btn-up'>up</button>
+          <button class='btn btn-default btn-down'>down</button></div>
+          <td class='td-order'><h3>${count}</h3></td>
           <td class='td-bird-name'><h3>${data[i].name}</h3></td>
           <td class='td-field-notes'><a tabindex="0" class="show-field-notes btn btn-lg btn-info" role="button" data-toggle="popover" data-trigger="focus" title="Field Notes" data-content="${data[i].notes}"><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span></a></td>
           <td><h3>${data[i].area}</h3></td>
@@ -17,7 +24,11 @@ $(document).ready( () => {
       else {
         var date = data[i].date.slice(5,10)
         $('.bird-list').append(
-          `<tr class='bird-row' id=${data[i].id}>
+          `<tr class='bird-row order-${count}' id=${data[i].id}>
+          <div class='order-btns'>
+          <button class='btn btn-default btn-up'>up</button>
+          <button class='btn btn-default btn-down'>down</button></div>
+          <td class='td-order'><h3>${count}</h3></td>
           <td><h3>${data[i].name}</h3></td>
           <td></td>
           <td><h3>${data[i].area}</h3></td>
@@ -60,5 +71,4 @@ $(document).on('click','.delete-btn', function () {
       }
     })
   }
-
 })

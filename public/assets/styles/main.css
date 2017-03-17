@@ -125,6 +125,13 @@ td h3, td a {
   vertical-align: middle;
 }
 
+/*.order-btns {
+  display: flex;
+
+}*/
+
+
+
 .td-field-notes {
   display: flex;
   align-items: center;

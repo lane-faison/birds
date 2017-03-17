@@ -1,40 +1,42 @@
-var count = 0
 
 $(document).ready( () => {
   $.get('/birds/bird', data => {
+
     console.log(data)
     for (var i = 0; i < data.length; i++) {
-      count++
+
       if (data[i].notes) {
         var date = data[i].date.slice(5,10)
+        var birdID = parseInt(data[i].id)
+        console.log(birdID);
         $('.bird-list').append(
-          `<tr class='bird-row order-${count}' id=${data[i].id}>
-          <div class='order-btns'>
-          <button class='btn btn-default btn-up'>up</button>
-          <button class='btn btn-default btn-down'>down</button></div>
-          <td class='td-order'><h3>${count}</h3></td>
+          `<tr class='bird-row' id=${birdID} value=${data[i].order}>
+          <td><div class='order-btns'>
+          <button class='btn btn-default btn-up'><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
+          <button class='btn btn-default btn-down'><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button></div></td>
+          <td class='td-order'><h3>${data[i].order}</h3></td>
           <td class='td-bird-name'><h3>${data[i].name}</h3></td>
           <td class='td-field-notes'><a tabindex="0" class="show-field-notes btn btn-lg btn-info" role="button" data-toggle="popover" data-trigger="focus" title="Field Notes" data-content="${data[i].notes}"><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span></a></td>
-          <td><h3>${data[i].area}</h3></td>
+          <td class='td-bird-location'><h3>${data[i].area}</h3></td>
           <td class='td-rating'><h3>${data[i].rating}</h3></td>
           <td class='date-options'><h3>${date}</h3><button type="button" class="delete-btn"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-          <a href="edit.html?id=${data[i].id}"><button type="button" class="edit-btn"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></a></td>
+          <a href="edit.html?id=${birdID} value=${data[i].order}"><button type="button" class="edit-btn"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></a></td>
           </tr>`)
       }
       else {
         var date = data[i].date.slice(5,10)
         $('.bird-list').append(
-          `<tr class='bird-row order-${count}' id=${data[i].id}>
-          <div class='order-btns'>
-          <button class='btn btn-default btn-up'>up</button>
-          <button class='btn btn-default btn-down'>down</button></div>
-          <td class='td-order'><h3>${count}</h3></td>
+          `<tr class='bird-row' id=${birdID} value=${data[i].order}>
+          <td><div class='order-btns'>
+          <button class='btn btn-default btn-up'><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
+          <button class='btn btn-default btn-down'><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button></div></td>
+          <td class='td-order'><h3>${data[i].order}</h3></td>
           <td><h3>${data[i].name}</h3></td>
           <td></td>
           <td><h3>${data[i].area}</h3></td>
           <td><h3>${data[i].rating}</h3></td>
           <td class='date-options'><h3>${date}</h3><button type="button" class="delete-btn"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-          <a href="edit.html?id=${data[i].id}"><button type="button" class="edit-btn"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></a></td>
+          <a href="edit.html?id=${birdID} value=${data[i].order}"><button type="button" class="edit-btn"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></a></td>
           </tr>`)
       }
     }
@@ -71,4 +73,54 @@ $(document).on('click','.delete-btn', function () {
       }
     })
   }
+})
+
+
+
+
+$(document).on('click','.btn-up', function () {
+  var clickedID = $(this).closest('tr').attr('id')
+  var previousID = $(this).closest('tr').prev().attr('id')
+
+  console.log(clickedID)
+  console.log(previousID)
+
+  var newClickedNum = parseInt($(this).closest('tr').attr('value')) - 1
+  var newPreviousNum = parseInt($(this).closest('tr').prev().attr('value')) + 1
+
+  var updateOrderClicked = {
+    order: newClickedNum
+  }
+  console.log(updateOrderClicked)
+
+  var updateOrderPrevious = {
+    order: newPreviousNum
+  }
+  console.log(updateOrderPrevious)
+
+  $.ajax({
+    url: `/birds/bird/${clickedID}`,
+    type: 'PUT',
+    data: updateOrderClicked,
+    success: function (result) {
+        console.log("Bird order was successfully updated.")
+      },
+      error: function (result) {
+        console.log("Something isn't working")
+      }
+  }).then(function (result) {
+    $.ajax({
+      url: `/birds/bird/${previousID}`,
+      type: 'PUT',
+      data: updateOrderPrevious,
+      success: function (result) {
+          console.log("Previous bird order was successfully updated.")
+        },
+        error: function (result) {
+          console.log("Something isn't working")
+        }
+    })
+  }).then(function () {
+    location.reload();
+  })
 })

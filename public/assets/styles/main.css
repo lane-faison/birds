@@ -125,10 +125,21 @@ td h3, td a {
   vertical-align: middle;
 }
 
-/*.order-btns {
+.order-btns {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 40px;
+}
 
-}*/
+.btn-up {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.btn-down {
+  margin-bottom: 10px;
+}
 
 
 

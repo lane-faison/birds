@@ -1,8 +1,12 @@
+var totalRows
 
 $(document).ready( () => {
   $.get('/birds/bird', data => {
 
+    totalRows = data.length
+
     console.log(data)
+
     for (var i = 0; i < data.length; i++) {
 
       if (data[i].notes) {
@@ -81,46 +85,114 @@ $(document).on('click','.delete-btn', function () {
 $(document).on('click','.btn-up', function () {
   var clickedID = $(this).closest('tr').attr('id')
   var previousID = $(this).closest('tr').prev().attr('id')
-
+  var valueOfClicked = parseInt($(this).closest('tr').attr('value'))
   console.log(clickedID)
   console.log(previousID)
 
-  var newClickedNum = parseInt($(this).closest('tr').attr('value')) - 1
-  var newPreviousNum = parseInt($(this).closest('tr').prev().attr('value')) + 1
+  if (valueOfClicked > 1) {
 
-  var updateOrderClicked = {
-    order: newClickedNum
-  }
-  console.log(updateOrderClicked)
+    var newClickedNum = parseInt($(this).closest('tr').attr('value')) - 1
+    var newPreviousNum = parseInt($(this).closest('tr').prev().attr('value')) + 1
 
-  var updateOrderPrevious = {
-    order: newPreviousNum
-  }
-  console.log(updateOrderPrevious)
+    var updateOrderClicked = {
+      order: newClickedNum
+    }
+    console.log(updateOrderClicked)
 
-  $.ajax({
-    url: `/birds/bird/${clickedID}`,
-    type: 'PUT',
-    data: updateOrderClicked,
-    success: function (result) {
-        console.log("Bird order was successfully updated.")
-      },
-      error: function (result) {
-        console.log("Something isn't working")
-      }
-  }).then(function (result) {
+    var updateOrderPrevious = {
+      order: newPreviousNum
+    }
+    console.log(updateOrderPrevious)
+
     $.ajax({
-      url: `/birds/bird/${previousID}`,
+      url: `/birds/bird/${clickedID}`,
       type: 'PUT',
-      data: updateOrderPrevious,
+      data: updateOrderClicked,
       success: function (result) {
-          console.log("Previous bird order was successfully updated.")
+          console.log("Bird order was successfully updated.")
         },
         error: function (result) {
           console.log("Something isn't working")
         }
+    }).then(function (result) {
+      $.ajax({
+        url: `/birds/bird/${previousID}`,
+        type: 'PUT',
+        data: updateOrderPrevious,
+        success: function (result) {
+            console.log("Previous bird order was successfully updated.")
+          },
+          error: function (result) {
+            console.log("Something isn't working")
+          }
+      })
+    }).then(function () {
+      location.reload();
     })
-  }).then(function () {
-    location.reload();
-  })
+  }
 })
+
+$(document).on('click','.btn-down', function () {
+
+  var clickedID = $(this).closest('tr').attr('id')
+  var nextID = $(this).closest('tr').next().attr('id')
+  var valueOfClicked = parseInt($(this).closest('tr').attr('value'))
+  console.log(clickedID)
+  console.log(nextID)
+
+  // TODO: need to change this
+  if (valueOfClicked < totalRows) {
+    console.log('totalRows: ' + totalRows)
+
+    var newClickedNum = parseInt($(this).closest('tr').attr('value')) + 1
+    var newNextNum = parseInt($(this).closest('tr').next().attr('value')) - 1
+
+    var updateOrderClicked = {
+      order: newClickedNum
+    }
+    console.log(updateOrderClicked)
+
+    var updateOrderNext = {
+      order: newNextNum
+    }
+    console.log(updateOrderNext)
+
+    $.ajax({
+      url: `/birds/bird/${clickedID}`,
+      type: 'PUT',
+      data: updateOrderClicked,
+      success: function (result) {
+          console.log("Bird order was successfully updated.")
+        },
+        error: function (result) {
+          console.log("Something isn't working")
+        }
+    }).then(function (result) {
+      $.ajax({
+        url: `/birds/bird/${nextID}`,
+        type: 'PUT',
+        data: updateOrderNext,
+        success: function (result) {
+            console.log("Previous bird order was successfully updated.")
+          },
+          error: function (result) {
+            console.log("Something isn't working")
+          }
+      })
+    }).then(function () {
+      location.reload();
+    })
+  }
+})
+
+
+
+
+
+
+// console.log('trying');
+// console.log();
+// $(`#${clickedID}`).insertBefore($(`#${previousID}`))
+// // $('#previousID').insertAfter('#clickedID')
+// // TODO: do insertBefore insertAfter here instead of reloading the whole page
+// // Below reload works if above doesn't

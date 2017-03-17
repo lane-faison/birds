@@ -11,8 +11,7 @@ router.get('/bird', (req, res) => {
   knex('bird')
   .join('location','bird.location_id','location.id')
   .select('bird.*','location.area')
-  .orderBy('location.area', 'asc')
-  .orderBy('bird.name', 'asc')
+  .orderBy('bird.order', 'asc')
   .then( result => {
     res.json(result)
   })
@@ -107,8 +106,9 @@ router.put('/bird/:id', (req, res) => {
     name: req.body.name,
     rating: req.body.rating,
     location_id: req.body.location_id,
-    notes: req.body.notes
-  }, ['name','rating','location_id','notes'])
+    notes: req.body.notes,
+    order: req.body.order
+  }, ['name','rating','location_id','notes','order'])
   .then( result => {
     res.json(result)
   })
@@ -116,6 +116,21 @@ router.put('/bird/:id', (req, res) => {
     res.status(404)
   })
 })
+
+// // UPDATE BIRD ORDER
+// router.put('/bird/:id/order', (req, res) => {
+//   Bird().where('id',req.params.id).update({
+//     order: req.body.order
+//   }, ['order'])
+//   .then( result => {
+//     res.json(result)
+//   })
+//   .catch( result => {
+//     res.status(404)
+//   })
+// })
+
+
 // UPDATE LOCATION
 router.put('/location/:id', (req, res) => {
   Location().where('id', req.params.id).update({

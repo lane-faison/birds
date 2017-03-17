@@ -16,6 +16,7 @@ $(document).on('click','.btn-save-bird', function () {
   else {
     event.preventDefault()
     $.post('/birds/bird', newBird, (result) => {
+
       window.location.href = "index.html";
     })
   }

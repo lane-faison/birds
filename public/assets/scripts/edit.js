@@ -1,6 +1,7 @@
 $(document).ready(function () {
   var BirdID = getUrlParameter('id')
   $.get(`birds/bird/${BirdID}`, function (data) {
+
     console.log(data)
     $('#edit-bird-name').val(`${data.name}`)
     $('#edit-bird-location').val(`${data.area}`)

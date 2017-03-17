@@ -19,9 +19,10 @@
   "homepage": "https://github.com/lanefaison2/birds#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
+    "cors": "^2.8.1",
     "express": "^4.15.2",
-    "nodemon": "^1.11.0",
     "knex": "^0.12.7",
+    "nodemon": "^1.11.0",
     "pg": "^6.1.4"
   }
 }

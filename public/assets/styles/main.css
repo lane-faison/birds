@@ -125,6 +125,24 @@ td h3, td a {
   vertical-align: middle;
 }
 
+.order-btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 40px;
+}
+
+.btn-up {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.btn-down {
+  margin-bottom: 10px;
+}
+
+
+
 .td-field-notes {
   display: flex;
   align-items: center;
@@ -149,7 +167,7 @@ td h3, td a {
   text-align: justify;
 }
 
-.main-list h1 {
+.main-list h2 {
   text-decoration: underline;
 }
 
